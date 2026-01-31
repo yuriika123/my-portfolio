@@ -1,14 +1,14 @@
 :root {
-    --color-bg: rgb(16, 16, 16);
+    --color-bg: rgb(0, 0, 128);
     --color-text: #ffffff;
     --color-text-subtle: #dcdcdc;
     --color-text-placeholder: #9d9d9d;
     --color-border: #ffffff;
     --color-bg-hover: rgba(255, 255, 255, 0.1);
-    --color-interactive-text: rgb(16, 16, 16);
+    --color-interactive-text: rgb(0, 0, 128);
 
-    --font-family-main: 'Courier New', 'Noto Sans JP', sans-serif;
-    --font-weight-light: 300;
+    --font-family-main: 'LINE Seed JP', sans-serif;
+    --font-weight-light: 100;
     --font-weight-thin: 100;
     
     --font-size-xs: 0.95rem;
@@ -35,6 +35,11 @@
     
     --transition-duration: 0.2s;
     --transition-duration-long: 1s;
+
+    --json-color-key: #9cdcfe;
+    --json-color-string: #ce9178;
+    --json-color-number: #b5cea8;
+    --json-color-bracket: #ffd700;
 }
 
 * {
@@ -71,7 +76,7 @@ body {
 }
 
 .typing-container.move-to-top {
-    position: fixed;
+    position: absolute;
     top: 1.6rem;
     left: 50%;
     transform: translateX(-50%);
@@ -117,10 +122,16 @@ body {
     gap: var(--spacing-xs);
     justify-content: center;
     flex-wrap: wrap;
+    position: sticky;
+    top: 1rem;
+    z-index: 100;
+    width: 100%;
+    pointer-events: none;
 }
 
 .tab-button {
-    background: transparent;
+    pointer-events: auto;
+    background: var(--color-bg);
     color: var(--color-text);
     border: 1px solid var(--color-border);
     padding: 0.45rem 0.9rem;
@@ -166,56 +177,60 @@ body {
     display: flex;
 }
 
-.tab-placeholder {
-    color: var(--color-text-placeholder);
-    font-size: var(--font-size-sm);
-    text-align: center;
-    letter-spacing: 0.02em;
-}
-
-.info-section {
-    max-width: 520px;
-    text-align: center;
-    margin: 0 auto;
+.json-container {
+    /* background-color: rgba(0, 0, 128, 0.4); */
     padding: var(--spacing-lg);
     border-radius: var(--border-radius-lg);
-}
-
-.info-title {
-    font-size: var(--font-size-xl);
-    font-weight: normal;
-    margin-bottom: var(--spacing-sm);
-    letter-spacing: 0.08em;
+    width: 100%;
+    max-width: 450px;
+    overflow-x: auto;
+    font-family: 'Menlo', 'Monaco', 'Courier New', monospace;
+    font-size: 0.9rem;
+    line-height: 1.5;
     color: var(--color-text);
+    text-align: left;
+    /* box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    border: 1px solid rgba(255, 255, 255, 0.1); */
 }
 
-.info-list {
-    list-style: none;
-    display: flex;
-    flex-direction: column;
-    gap: var(--spacing-sm);
-    font-size: var(--font-size-md);
-    color: var(--color-text-subtle);
-    text-align: center;
-    align-items: center;
+.json-container pre {
+    margin: 0;
 }
 
-.info-list a {
-    color: var(--color-text);
-    text-decoration: none;
-    font-size: 1.12rem;
-    letter-spacing: 0.03em;
+.json-container code {
+    white-space: pre-wrap;
+    word-break: break-word;
 }
 
-.info-list a:hover {
+.json-key {
+    color: var(--json-color-key);
+}
+
+.json-string {
+    color: var(--json-color-string);
+}
+
+.json-number {
+    color: var(--json-color-number);
+}
+
+.json-string a {
+    color: inherit;
     text-decoration: underline;
+    text-decoration-thickness: 1px;
+    text-underline-offset: 2px;
+}
+
+.json-string a:hover {
+    color: var(--color-text);
+    text-decoration-style: double;
 }
 
 .preview-item {
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: var(--spacing-md); /* 動画とタイトルの間隔を少し詰める */
+    gap: var(--spacing-md);
     cursor: pointer;
     transition: transform 0.3s ease, opacity 0.3s ease;
     width: 100%;
@@ -226,7 +241,7 @@ body {
 }
 
 .preview-item:hover {
-    transform: scale(1.02); /* スケールを少し抑える */
+    transform: scale(1.02);
     opacity: 0.9;
 }
 
@@ -245,12 +260,12 @@ body {
 }
 
 .preview-title {
-    font-size: var(--font-size-lg); /* 少し小さくして馴染ませる */
+    font-size: var(--font-size-lg);
     font-weight: var(--font-weight-light);
     color: var(--color-text);
     text-align: center;
     user-select: text;
-    order: 2; /* 明示的に後に持ってくる */
+    order: 2;
 }
 
 .preview-video {
@@ -260,7 +275,7 @@ body {
     aspect-ratio: 1 / 1;
     object-fit: cover;
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
-    order: 1; /* 明示的に前に持ってくる */
+    order: 1;
 }
 
 .preview-item iframe {
@@ -316,6 +331,14 @@ body {
         transform: none;
         opacity: 1;
     }
+    
+    .json-container {
+        max-width: 400px;
+        font-size: 0.8rem;
+        padding: var(--spacing-md);
+        width: 90%;
+        margin: 0 auto;
+    }
 }
 
 @media (max-width: 480px) {
@@ -337,39 +360,43 @@ body {
     }
 }
 
-/* PC向け最適化: 769px以上の画面でグリッドレイアウト */
 @media (min-width: 769px) {
     #preview-container {
-        max-width: 1200px; /* 最大幅を設定 */
-        margin: 0 auto; /* 中央寄せ */
+        max-width: 1200px;
+        margin: 0 auto;
         padding-left: var(--spacing-xl);
         padding-right: var(--spacing-xl);
     }
 
-    /* アクティブなタブコンテンツをグリッド表示 */
     .tab-content.active {
-        display: grid; /* グリッドレイアウトに変更 */
-        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); /* 自動調整される複数列 */
-        gap: var(--spacing-xxxl); /* アイテム間の間隔 */
-        justify-items: center; /* 水平方向は中央寄せ */
-        align-items: start; /* 垂直方向は上揃え */
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: var(--spacing-xxxl);
+        justify-items: center;
+        align-items: start;
+    }
+    
+    .tab-content[data-tab="info"].active {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
     }
 
     .preview-item {
-        max-width: none; /* グリッドアイテム内で幅を自動調整 */
+        max-width: none;
         width: 100%;
-        padding: 0; /* paddingをリセットまたは調整 */
+        padding: 0;
     }
 
     .preview-title {
-        min-height: 0; /* 高さを固定する必要がなくなる */
+        min-height: 0;
         display: block;
         line-height: 1.4;
         margin-top: var(--spacing-xs);
     }
 
     .preview-video {
-        max-width: 100%; /* グリッドアイテム内で幅を最大に */
+        max-width: 100%;
     }
 
     .preview-item iframe {
@@ -377,13 +404,12 @@ body {
     }
 }
 
-/* さらに大きな画面 (例: 1200px以上) での調整 */
 @media (min-width: 1200px) {
     #preview-container {
         padding-left: var(--spacing-xxxl);
-        padding-right: var(--spacing-xxxl);
+        padding-right: var(--spacing-xl);
     }
     .tab-content.active {
-        gap: var(--spacing-xxxl) var(--spacing-xxxl); /* 横方向のギャップも調整 */
+        gap: var(--spacing-xxxl) var(--spacing-xxxl);
     }
 }

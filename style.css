@@ -7,7 +7,10 @@
     --color-bg-hover: rgba(255, 255, 255, 0.1);
     --color-interactive-text: rgb(16, 16, 16);
 
-    --font-family-main: 'Courier New', monospace;
+    --font-family-main: 'Courier New', 'Noto Sans JP', sans-serif;
+    --font-weight-light: 300;
+    --font-weight-thin: 100;
+    
     --font-size-xs: 0.95rem;
     --font-size-sm: 1rem;
     --font-size-md: 1.15rem;
@@ -44,6 +47,7 @@ body {
     background-color: var(--color-bg);
     color: var(--color-text);
     font-family: var(--font-family-main);
+    font-weight: var(--font-weight-light);
     min-height: 100vh;
     overflow-x: hidden;
     -webkit-touch-callout: none;
@@ -52,7 +56,7 @@ body {
 
 .typing-container {
     font-size: var(--font-size-xxxl);
-    font-weight: normal;
+    font-weight: var(--font-weight-thin);
     transition: all var(--transition-duration-long) ease;
     position: absolute;
     top: 50%;
@@ -211,19 +215,19 @@ body {
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: var(--spacing-lg);
+    gap: var(--spacing-md); /* 動画とタイトルの間隔を少し詰める */
     cursor: pointer;
     transition: transform 0.3s ease, opacity 0.3s ease;
     width: 100%;
-    max-width: 500px; /* Adjust this for grid layout */
+    max-width: 500px;
     padding: 0 var(--spacing-md);
     touch-action: manipulation;
     user-select: none;
 }
 
 .preview-item:hover {
-    transform: scale(1.05);
-    opacity: 0.8;
+    transform: scale(1.02); /* スケールを少し抑える */
+    opacity: 0.9;
 }
 
 .preview-item:active {
@@ -236,25 +240,27 @@ body {
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: var(--spacing-lg);
+    gap: var(--spacing-md);
     width: 100%;
 }
 
 .preview-title {
-    font-size: var(--font-size-xxl);
-    font-weight: normal;
+    font-size: var(--font-size-lg); /* 少し小さくして馴染ませる */
+    font-weight: var(--font-weight-light);
     color: var(--color-text);
     text-align: center;
     user-select: text;
+    order: 2; /* 明示的に後に持ってくる */
 }
 
 .preview-video {
     width: 100%;
-    max-width: 360px; /* Adjust this for grid layout */
+    max-width: 360px;
     height: auto;
     aspect-ratio: 1 / 1;
     object-fit: cover;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
+    order: 1; /* 明示的に前に持ってくる */
 }
 
 .preview-item iframe {
@@ -263,6 +269,7 @@ body {
     aspect-ratio: 16 / 9;
     height: auto;
     border: none;
+    order: 1;
 }
 
 @media (max-width: 768px) {
@@ -344,13 +351,21 @@ body {
         display: grid; /* グリッドレイアウトに変更 */
         grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); /* 自動調整される複数列 */
         gap: var(--spacing-xxxl); /* アイテム間の間隔 */
-        place-items: center; /* グリッドアイテムを中央寄せ */
+        justify-items: center; /* 水平方向は中央寄せ */
+        align-items: start; /* 垂直方向は上揃え */
     }
 
     .preview-item {
         max-width: none; /* グリッドアイテム内で幅を自動調整 */
         width: 100%;
         padding: 0; /* paddingをリセットまたは調整 */
+    }
+
+    .preview-title {
+        min-height: 0; /* 高さを固定する必要がなくなる */
+        display: block;
+        line-height: 1.4;
+        margin-top: var(--spacing-xs);
     }
 
     .preview-video {

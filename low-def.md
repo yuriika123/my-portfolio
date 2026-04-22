@@ -1,1 +1,0 @@
-ffmpeg -i record.mov -vf "scale=-2:720" -vcodec libx264 -crf 28 -an -movflags +faststart output.mp4

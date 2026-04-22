@@ -1,1 +1,0 @@
-ffmpeg -i 1.mov -c:v libx264 -crf 18 -preset slow -c:a aac -b:a 192k 1.mp4

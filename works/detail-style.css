@@ -1,0 +1,145 @@
+/* 親ページ（../../style.css）のスタイルを継承し、詳細ページ用に拡張しています */
+
+.project-header {
+    position: fixed;
+    top: var(--spacing-md);
+    left: var(--spacing-md);
+    z-index: 100;
+}
+
+.back-button {
+    text-decoration: none;
+    display: inline-block;
+}
+
+.project-container {
+    opacity: 0;
+    transition: opacity var(--transition-duration-long) ease;
+    padding-top: var(--spacing-top);
+    padding-bottom: var(--spacing-xl);
+    padding-left: var(--spacing-md);
+    padding-right: var(--spacing-md);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: var(--spacing-xl);
+    width: 100%;
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.project-title {
+    font-size: var(--font-size-xxxl);
+    font-weight: var(--font-weight-thin);
+    text-align: center;
+    margin-top: var(--spacing-lg);
+    letter-spacing: 0.05em;
+}
+
+.youtube-link-container {
+    margin-bottom: var(--spacing-md);
+    text-align: center;
+}
+
+.youtube-link {
+    color: var(--color-text);
+    text-decoration: none;
+    font-size: var(--font-size-md);
+    padding: 0.6rem 1.2rem;
+    border: 1px solid var(--color-border);
+    border-radius: var(--border-radius-pill);
+    transition: all var(--transition-duration) ease;
+    display: inline-block;
+}
+
+.youtube-link:hover {
+    background-color: var(--color-text);
+    color: var(--color-bg);
+}
+
+.project-content {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-xxxl);
+    width: 100%;
+    padding: 0 var(--spacing-md);
+}
+
+.preview-section {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+}
+
+.detail-video {
+    width: 100%;
+    max-width: 640px;
+    height: auto;
+    border-radius: var(--border-radius-lg);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+}
+
+.text-section {
+    width: 100%;
+    max-width: 640px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-md);
+}
+
+.text-section h2 {
+    font-size: var(--font-size-xl);
+    font-weight: var(--font-weight-light);
+    color: var(--color-text);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+    padding-bottom: var(--spacing-xs);
+    letter-spacing: 0.03em;
+}
+
+.text-section p {
+    font-size: var(--font-size-sm);
+    line-height: 1.8;
+    color: var(--color-text-subtle);
+    letter-spacing: 0.02em;
+}
+
+.tech-stack-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--spacing-xs);
+    margin-bottom: var(--spacing-xs);
+}
+
+.tech-tag {
+    background-color: rgba(255, 255, 255, 0.1);
+    color: var(--color-text);
+    padding: 0.3rem 0.8rem;
+    border-radius: var(--border-radius-pill);
+    font-size: var(--font-size-xs);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+@media (max-width: 768px) {
+    .project-header {
+        top: var(--spacing-sm);
+        left: var(--spacing-sm);
+    }
+
+    .project-title {
+        font-size: var(--font-size-xxl);
+        margin-top: var(--spacing-xxl);
+    }
+    
+    .project-container {
+        padding-top: var(--spacing-top-xs);
+    }
+    
+    .project-content {
+        gap: var(--spacing-xxl);
+    }
+    
+    .text-section h2 {
+        font-size: var(--font-size-lg);
+    }
+}

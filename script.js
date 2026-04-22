@@ -11,7 +11,16 @@ document.addEventListener('DOMContentLoaded', () => {
     let currentTab = 'coding';
 
     function init() {
-        if (!previewContainer.classList.contains('hidden')) {
+        if (sessionStorage.getItem('hasSeenAnimation')) {
+            typingContainer.style.transition = 'none';
+            typingElement.textContent = text;
+            typingContainer.classList.add('move-to-top');
+            previewContainer.classList.remove('hidden');
+            setupPreviews();
+            setTimeout(() => {
+                typingContainer.style.transition = '';
+            }, 50);
+        } else if (!previewContainer.classList.contains('hidden')) {
             setupPreviews();
         } else {
             startTypingAnimation();
@@ -25,6 +34,7 @@ document.addEventListener('DOMContentLoaded', () => {
             charIndex++;
             setTimeout(startTypingAnimation, 100);
         } else {
+            sessionStorage.setItem('hasSeenAnimation', 'true');
             typingContainer.classList.add('move-to-top');
             setTimeout(() => {
                 previewContainer.classList.remove('hidden');

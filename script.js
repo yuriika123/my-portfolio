@@ -10,8 +10,24 @@ document.addEventListener('DOMContentLoaded', () => {
     let previewsInitialized = false;
     let currentTab = 'coding';
 
+    function hasSeenAnimation() {
+        const seenTime = localStorage.getItem('portfolio_hasSeenAnimation');
+        if (seenTime) {
+            const now = new Date().getTime();
+            // 1時間（3600000ミリ秒）以内ならアニメーションをスキップ
+            if (now - parseInt(seenTime, 10) < 3600000) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    function markAnimationAsSeen() {
+        localStorage.setItem('portfolio_hasSeenAnimation', new Date().getTime().toString());
+    }
+
     function init() {
-        if (sessionStorage.getItem('hasSeenAnimation')) {
+        if (hasSeenAnimation()) {
             typingContainer.style.transition = 'none';
             typingElement.textContent = text;
             typingContainer.classList.add('move-to-top');
@@ -34,7 +50,7 @@ document.addEventListener('DOMContentLoaded', () => {
             charIndex++;
             setTimeout(startTypingAnimation, 100);
         } else {
-            sessionStorage.setItem('hasSeenAnimation', 'true');
+            markAnimationAsSeen();
             typingContainer.classList.add('move-to-top');
             setTimeout(() => {
                 previewContainer.classList.remove('hidden');

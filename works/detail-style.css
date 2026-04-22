@@ -104,6 +104,19 @@
     letter-spacing: 0.02em;
 }
 
+.text-section a {
+    color: var(--color-text);
+    text-decoration: underline;
+    text-decoration-thickness: 1px;
+    text-underline-offset: 3px;
+    transition: color var(--transition-duration) ease, text-decoration-color var(--transition-duration) ease;
+}
+
+.text-section a:hover {
+    color: rgba(255, 255, 255, 0.7);
+    text-decoration-style: double;
+}
+
 .tech-stack-list {
     display: flex;
     flex-wrap: wrap;

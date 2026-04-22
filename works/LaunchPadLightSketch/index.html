@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LaunchPad Light Sketch - yuriika123's Works</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=LINE+Seed+JP:wght@100..900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../../style.css">
+    <link rel="stylesheet" href="../detail-style.css">
+</head>
+<body>
+    <header class="project-header">
+        <a href="../../index.html" class="tab-button back-button">Back</a>
+    </header>
+
+    <main id="project-container" class="project-container">
+        <h1 class="project-title">LaunchPad Light Sketch</h1>
+        
+        <div class="youtube-link-container">
+            <a href="https://youtube.com/shorts/Z_6einHp0-A" class="youtube-link" target="_blank" rel="noopener noreferrer">
+                Watch Full Video on YouTube
+            </a>
+        </div>
+
+        <div class="project-content">
+            <section class="preview-section">
+                <video class="detail-video" src="1.mp4" autoplay muted loop playsinline></video>
+            </section>
+
+            <section class="text-section">
+                <h2>Tech Stack</h2>
+                <div class="tech-stack-list">
+                    <span class="tech-tag">C++</span>
+                    <span class="tech-tag">openFrameworks</span>
+                    <span class="tech-tag">ofxMidi</span>
+                    <span class="tech-tag">LaunchPad Mini MK3</span>
+                </div>
+                <p>
+                    ハードウェアとの連携がしてみたい、けれど Arduino や M5Stack をいきなり買うのは怖いので、所有していた LaunchPad を使いました。<br>
+                    LaunchPad からの MIDI 入力に対して、ウィンドウの対応する場所に ofCurveVertex() で曲線を引き、また LaunchPad に MIDI 出力を返すことで LaunchPad を光らせています。<br>
+                    LaunchPad には Programmer Mode というのがあり、除算や剰余でうまく座標を計算できるように最初から MIDI マッピングされていました。そのあたりのプログラムを組むのが楽しかったです。
+                </p>
+            </section>
+
+            <section class="preview-section">
+                <video class="detail-video" src="2.mp4" autoplay muted loop playsinline></video>
+            </section>
+
+            <section class="text-section">
+                <h2>Description</h2>
+                <p>
+                    PC のキーボードやトラックパッドでも十分インタラクティブな設計はできるけれど、LaunchPad を始めとしたハードウェアがさらにその体験を高めてくれるような気がします。Arduino や M5Stack はさらにその力を秘めていると思いました。
+                </p>
+            </section>
+
+            <section class="preview-section">
+                <video class="detail-video" src="3.mp4" autoplay muted loop playsinline></video>
+            </section>
+            
+            <section class="text-section">
+                <h2>Additional Notes</h2>
+                <p>
+                    <a href=https://fael-downloads-prod.focusrite.com/customer/prod/downloads/launchpad_mini_user_guide_v2-pdf-ja.pdf>ユーザーガイド</a>は Programmer Mode の MIDI マッピングの確認などに使いました。
+                    12歳ぐらいの時に少しだけ Arduino を触ったけれど、何も覚えてません。
+                </p>
+                <h2>2026-02-14</h2>
+            </section>
+        </div>
+    </main>
+
+    <script src="../detail-script.js"></script>
+</body>
+</html>

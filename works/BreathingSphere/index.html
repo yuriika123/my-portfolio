@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Breathing Sphere - yuriika123's Works</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=LINE+Seed+JP:wght@100..900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../../style.css">
+    <link rel="stylesheet" href="../detail-style.css">
+</head>
+<body>
+    <header class="project-header">
+        <a href="../../index.html" class="tab-button back-button">Back</a>
+    </header>
+
+    <main id="project-container" class="project-container">
+        <h1 class="project-title">Breathing Sphere</h1>
+        
+        <div class="youtube-link-container">
+            <a href="https://youtube.com/shorts/OZCFezQOww8" class="youtube-link" target="_blank" rel="noopener noreferrer">
+                Watch Full Video on YouTube
+            </a>
+        </div>
+
+        <div class="project-content">
+            <section class="preview-section">
+                <video class="detail-video" src="1.mp4" autoplay muted loop playsinline></video>
+            </section>
+
+            <section class="text-section">
+                <h2>Tech Stack</h2>
+                <div class="tech-stack-list">
+                    <span class="tech-tag">C++</span>
+                    <span class="tech-tag">openFrameworks</span>
+                    <span class="tech-tag">ofxPhyllotaxis</span>
+                    <span class="tech-tag">ofxRollingCam</span>
+                </div>
+                <p>
+                    植物の模様がつくられるパターン（フィロタクシス）を利用できるアドオンを使用しました。<br>
+                    最初は ofDrawCircle() を使い2次元で制作していたのですが、ofDrawSphere() に切り替え ofxRollingCam を利用することで、3次元化しました。<br>
+                    三角関数の周期的な動きで動いていますが、各変数ごとに周期を変えることで、少しずつ模様が変化していくようにしました。
+                </p>
+            </section>
+
+            <section class="preview-section">
+                <video class="detail-video" src="2.mp4" autoplay muted loop playsinline></video>
+            </section>
+
+            <section class="text-section">
+                <h2>Description</h2>
+                <p>
+                    私はいつも AI に助けてもらいながら、コーディングをしています。今まではメインで使用している AI が Gemini だったので、 Gemini CLI を使っていましたが、的外れな返答をしてきたり十分に親切ではなかったりしたのが不満でした。<br>
+                    そのため Claude の Pro プランに登録し、この作品も Claude Code に助けてもらいながら制作しました。<br>
+                </p>
+            </section>
+
+            <section class="preview-section">
+                <video class="detail-video" src="3.mp4" autoplay muted loop playsinline></video>
+            </section>
+            
+            <section class="text-section">
+                <h2>Additional Notes</h2>
+                <p>
+                    最近は色々なアドオンを漁って、使ってみることにハマっています。
+                </p>
+                <h2>2026-04-29</h2>
+            </section>
+        </div>
+    </main>
+
+    <script src="../detail-script.js"></script>
+</body>
+</html>
